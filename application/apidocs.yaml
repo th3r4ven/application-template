@@ -1,0 +1,411 @@
+swagger: "2.0"
+info:
+  description: "developed by <a href='https://github.com/th3r4ven' target='_blank'>TH3R4VEN</a>"
+  version: "1.0.0"
+  title: "Application Template API Docs"
+  contact:
+    email: "matheus.chiarato@outlook.com.br"
+basePath: "/api"
+
+tags:
+- name: "Status"
+  description: "Server status"
+- name: "Settings"
+  description: "System settings handlers"
+- name: "Users"
+  description: "Users handlers"
+
+paths:
+
+  /status:
+    get:
+      tags:
+      - "Status"
+      summary: "Retrieve server Status"
+      description: ""
+      operationId: "viewStatus"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      responses:
+        "200":
+          description: "Success"
+
+  /v1/settings:
+    get:
+      tags:
+      - "Settings"
+      summary: "Retrieve Settings"
+      description: ""
+      operationId: "viewSettings"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      responses:
+        "200":
+          description: "Success"
+        "401":
+          description: "Unauthorized Access"
+        "404":
+          description: "Data not found"
+        "500":
+          description: "Message: Sorry, something went wrong on our side"
+      security:
+        - basicAuth: [ ]
+    post:
+      tags:
+      - "Settings"
+      summary: "Update Settings"
+      description: ""
+      operationId: "editSettings"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Settings parameters that need to be defined in body request"
+        required: true
+        schema:
+          $ref: "#/definitions/Settings"
+      responses:
+        "200":
+          description: "Success"
+        "400":
+          description: "Message: Bad request message"
+        "401":
+          description: "Unauthorized Access"
+        "500":
+          description: "Message: Sorry, something went wrong on our side"
+      security:
+        - basicAuth: [ ]
+
+  /v1/users:
+    get:
+      tags:
+      - "Users"
+      summary: "Retrieve Users"
+      description: ""
+      operationId: "viewUsers"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      responses:
+        "200":
+          description: "Success"
+        "401":
+          description: "Unauthorized Access"
+        "404":
+          description: "Data not found"
+        "500":
+          description: "Message: Sorry, something went wrong on our side"
+      security:
+        - basicAuth: [ ]
+    post:
+      tags:
+      - "Users"
+      summary: "Create User"
+      description: ""
+      operationId: "createUser"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Users parameters that need to be defined in body request"
+        required: true
+        schema:
+          $ref: "#/definitions/Users"
+      responses:
+        "200":
+          description: "Success"
+        "400":
+          description: "Message: Bad request message"
+        "401":
+          description: "Unauthorized Access"
+        "500":
+          description: "Message: Sorry, something went wrong on our side"
+      security:
+        - basicAuth: [ ]
+
+  /v1/users/{Identifier}:
+    get:
+      tags:
+      - "Users"
+      summary: "Retrieve User"
+      description: ""
+      operationId: "viewUser"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "Identifier"
+        in: "path"
+        description: "Identifier (id, username, name, email) that need to be defined in request"
+        required: true
+        type: "string"
+      responses:
+        "200":
+          description: "Success"
+        "401":
+          description: "Unauthorized Access"
+        "404":
+          description: "Data not found"
+        "500":
+          description: "Message: Sorry, something went wrong on our side"
+      security:
+        - basicAuth: [ ]
+    put:
+      tags:
+      - "Users"
+      summary: "Update User"
+      description: ""
+      operationId: "editUser"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "Identifier"
+        in: "path"
+        description: "Identifier (id, username, name, email) that need to be defined in request"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        description: "Users parameters that need to be defined in body request"
+        required: true
+        schema:
+          $ref: "#/definitions/Users"
+      responses:
+        "200":
+          description: "Success"
+        "400":
+          description: "Message: Bad request message"
+        "401":
+          description: "Unauthorized Access"
+        "500":
+          description: "Message: Sorry, something went wrong on our side"
+      security:
+        - basicAuth: [ ]
+    delete:
+      tags:
+      - "Users"
+      summary: "Delete User"
+      description: ""
+      operationId: "deleteUser"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "Identifier"
+        in: "path"
+        description: "Identifier (id, username, name, email) that need to be defined in request"
+        required: true
+        type: "string"
+      responses:
+        "200":
+          description: "Success"
+        "401":
+          description: "Unauthorized Access"
+        "404":
+          description: "Data not found"
+        "500":
+          description: "Message: Sorry, something went wrong on our side"
+      security:
+        - basicAuth: [ ]
+
+  /v1/roles:
+    get:
+      tags:
+      - "Roles"
+      summary: "Retrieve Roles"
+      description: ""
+      operationId: "viewRoles"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      responses:
+        "200":
+          description: "Success"
+        "401":
+          description: "Unauthorized Access"
+        "404":
+          description: "Data not found"
+        "500":
+          description: "Message: Sorry, something went wrong on our side"
+      security:
+        - basicAuth: [ ]
+    post:
+      tags:
+      - "Roles"
+      summary: "Create Role"
+      description: ""
+      operationId: "createRole"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Roles parameters that need to be defined in body request"
+        required: true
+        schema:
+          $ref: "#/definitions/Roles"
+      responses:
+        "200":
+          description: "Success"
+        "400":
+          description: "Message: Bad request message"
+        "401":
+          description: "Unauthorized Access"
+        "500":
+          description: "Message: Sorry, something went wrong on our side"
+      security:
+        - basicAuth: [ ]
+
+  /v1/roles/{Identifier}:
+    get:
+      tags:
+      - "Roles"
+      summary: "Retrieve Role"
+      description: ""
+      operationId: "viewRole"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "Identifier"
+        in: "path"
+        description: "Identifier (id, username, name, email) that need to be defined in request"
+        required: true
+        type: "string"
+      responses:
+        "200":
+          description: "Success"
+        "401":
+          description: "Unauthorized Access"
+        "404":
+          description: "Data not found"
+        "500":
+          description: "Message: Sorry, something went wrong on our side"
+      security:
+        - basicAuth: [ ]
+    put:
+      tags:
+      - "Roles"
+      summary: "Update Role"
+      description: ""
+      operationId: "editRole"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "Identifier"
+        in: "path"
+        description: "Identifier (id, username, name, email) that need to be defined in request"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        description: "Roles parameters that need to be defined in body request"
+        required: true
+        schema:
+          $ref: "#/definitions/Roles"
+      responses:
+        "200":
+          description: "Success"
+        "400":
+          description: "Message: Bad request message"
+        "401":
+          description: "Unauthorized Access"
+        "500":
+          description: "Message: Sorry, something went wrong on our side"
+      security:
+        - basicAuth: [ ]
+    delete:
+      tags:
+      - "Roles"
+      summary: "Delete Role"
+      description: ""
+      operationId: "deleteRole"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "Identifier"
+        in: "path"
+        description: "Identifier (id, username, name, email) that need to be defined in request"
+        required: true
+        type: "string"
+      responses:
+        "200":
+          description: "Success"
+        "401":
+          description: "Unauthorized Access"
+        "404":
+          description: "Data not found"
+        "500":
+          description: "Message: Sorry, something went wrong on our side"
+      security:
+        - basicAuth: [ ]
+
+
+definitions:
+  Settings:
+    type: "object"
+    required:
+    - "log_level"
+    properties:
+      log_level:
+        type: "string"
+        example: "info"
+  Users:
+    type: "object"
+    properties:
+      username:
+        type: "string"
+        example: "th3r4ven"
+      password:
+        type: "string"
+        example: "securePassword"
+      phone:
+        type: "string"
+        example: "+5511912341234"
+      email:
+        type: "string"
+        example: "example@th3r4ven.com"
+      roles:
+        type: "array"
+        items:
+          type: "string"
+        example: ["role1", "role2", "role6"]
+  Roles:
+    type: "object"
+    properties:
+      name:
+        type: "string"
+        example: "engineer"
+      users:
+        type: "array"
+        items:
+          type: "string"
+        example: ["user1", "user2", "user6"]
+
+securityDefinitions:
+  basicAuth:
+    type: "basic"
+    scheme: "basic"

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>
+        {{ page_title or "Login" }} | Torcida Furiosa
+    </title>
+
+    <script src="https://kit.fontawesome.com/7fcb27bcec.js" crossorigin="anonymous"></script>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/css/jquery.dataTables.min.css"
+      integrity="sha512-1k7mWiTNoyx2XtmI96o+hdjP8nn0f3Z2N4oF/9ZZRgijyV4omsKOXEnqL1gKQNPy2MTSP9rIEWGcH/CInulptA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link type="text/css" href="{{ url_for('static', filename="css/style.css") }}" rel="stylesheet">
+
+    <!-- Specific Page CSS goes HERE -->
+    {% block stylesheets %}{% endblock stylesheets %}
+
+</head>
+<body class="app">
+
+    <div id='loader'>
+      <div class="spinner"></div>
+    </div>
+
+    <script>
+      window.addEventListener('load', function load() {
+        const loader = document.getElementById('loader');
+        setTimeout(function() {
+          loader.classList.add('fadeOut');
+        }, 300);
+      });
+    </script>
+
+    {% from 'bootstrap5/form.html' import render_form %}
+
+    <div class="peers ai-s fxw-nw h-100vh">
+      <div class="d-n@sm- peer peer-greed h-100 pos-r bgr-n bgpX-c bgpY-c bgsz-cv" style='background-image: url("{{ url_for('static', filename='images/background.jpg') }}")'>
+        <div class="pos-a centerXY">
+          <div class="bgc-white bdrs-50p pos-r" style='width: 0px; height: 0px;'>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-4 peer pX-40 pY-80 h-100 bgc-white scrollable pos-r" style='min-width: 320px;'>
+        {% include "layouts/includes/messages.html" %}
+        {% block content %}{% endblock content %}
+      </div>
+    </div>
+
+    {% include 'layouts/includes/scripts.html' %}
+
+    <!-- Specific Page JS goes HERE -->
+    {% block javascripts %}{% endblock javascripts %}    
+
+</body>
+</html>

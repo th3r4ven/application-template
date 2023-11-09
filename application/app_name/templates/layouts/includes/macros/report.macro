@@ -1,0 +1,65 @@
+{% set default_settings=dict(paging=False, searching=False, ordering=False) %}
+
+
+{# --------------------------------------------------------------------- #}
+{# If you create <table> and would like to datatable.js to populate them #}
+{# based on json data, use this macro                                    #}
+{# --------------------------------------------------------------------- #}
+{% macro render_table(endpoint, id, data, settings={}) %}
+<script>
+
+    $(document).ready(function() {
+        let _table;
+
+        let _header = $("#{{ id }} thead th");
+
+        let _data = null;
+        _data = {{ data }};
+
+        let _columns = [];
+        _header.each((index, item) => {
+            let _name = $(item).data("name");
+            if (_name) {
+                let _render = $(item).data("render");
+                if (_render) {
+                  _columns.push({
+                      data: null, render: eval(_render)
+                   });
+                } else {
+                  _columns.push({
+                      data: _name
+                   });
+                }
+            } else {
+
+            }
+        });
+
+        let _settings = {
+            data: _data,
+            deferRender: true,
+            paging: true,
+            dom: 'Bfrtip',
+            buttons: ['copyHtml5', 'excelHtml5', 'csvHtml5', 'pdfHtml5'],
+            columns: _columns,
+            createdRow: (row, data, index) => {
+              $(row).attr("data-id", data.id);
+              $(row).attr("title", data.id);
+            },
+            preDrawCallback: () => {
+              $('#users_table tbody tr.new').css("filter", "blur(1px)");
+            },
+            language: {
+              "processing": "Carregando dados..."
+            },
+            drawCallback: () => {
+              setTimeout(() => {
+                $('#users_table tbody tr.new').removeClass("new");
+              }, 600);
+            }
+        };
+
+        _table = $("#{{ id }}").DataTable(Object.assign(_settings, {{ settings|tojson }}));
+    });
+</script>
+{% endmacro %}

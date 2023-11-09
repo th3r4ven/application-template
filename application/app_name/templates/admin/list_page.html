@@ -1,0 +1,50 @@
+{% extends "layouts/base-admin-dashboard.html" %}
+
+{% block content %}
+
+    <style>
+        table.dataTable.no-footer {
+            border-bottom: 1px solid rgba(0, 0, 0, 0.0625) !important;
+            margin-bottom: 20px !important;
+        }
+        table.dataTable thead th, table.dataTable thead td {
+            padding: 10px !important;
+            border: 1px solid rgba(0, 0, 0, 0.0625) !important;
+        }
+        td.actions{
+            font-size: 1.5em;
+            padding: 0 !important;
+            padding-left: 1% !important;
+        }
+    </style>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="bgc-white bd bdrs-3 p-20 mB-20">
+                    {{ datatable.control(endpoint=endpoint, id="data_table", data=data, settings=dict(paging=True, searching=True, ordering=False), custom_fields=custom_fields, two_fa_endpoint=two_fa_endpoint or None) }}
+                    <table id="data_table" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                        <thead>
+                            <tr>
+                            {% if fields %}
+                              {% for field in fields %}
+                                <th scope="col" data-name="{{ field[0] }}">{{ field[1] }}</th>
+                              {% endfor %}
+                            {% endif %}
+                            {% if custom_fields != ['readonly'] %}
+                                <th scope="col actions" style="width: 100px;">Ações</th>
+                            {% endif %}
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}
+
+
+{% block javascripts %}
+
+{% endblock javascripts %}

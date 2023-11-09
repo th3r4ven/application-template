@@ -1,0 +1,27 @@
+<header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+  <div class="d-md-flex col-md-6" style="display: flex;">
+    <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6" href="{{ url_for('admin_dashboard.index') }}"
+       style="
+       background-image: url({{ url_for('static', filename='logo_url_here')}});
+       background-size: contain;
+       background-repeat: no-repeat;
+       padding-top: 25px;
+       padding-bottom: 25px;
+       margin-top: 5px;
+       margin-bottom: 5px;
+       background-color: transparent !important;
+       box-shadow: unset;
+       margin-left: 1%;
+       width: 10%;
+  "></a>
+    <h4 style="color: white;align-self: center;">Application Template</h4>
+  </div>
+  <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="navbar-nav" style="color: white !important;padding-right: 1%">
+    <div class="nav-item text-nowrap">
+      <span class="fsz-sm">Bem vindo(a) <b>{{ session['name'] }}!</b></span>
+    </div>
+  </div>
+</header>

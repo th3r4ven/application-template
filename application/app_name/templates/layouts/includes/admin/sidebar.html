@@ -1,0 +1,66 @@
+<nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-body-tertiary sidebar collapse" style="background-color: rgba(43,48,53,var(--bs-bg-opacity))!important">
+  <div class="position-sticky pt-3 sidebar-sticky">
+    <ul class="nav flex-column">
+      <li class="nav-item">
+        <a class="nav-link" aria-current="page" href="{{ url_for('admin_dashboard.index') }}">
+          <i class="fa-solid fa-house"></i>
+          Dashboard
+        </a>
+      </li>
+      <hr style="margin: 0"/>
+
+      {% if 'admin' in session['role'] or 'manager' in session['role'] %}
+      <hr style="margin: 0"/>
+      <li class="nav-item">
+        <a class="nav-link" aria-current="page" href="{{ url_for('admin_users.index') }}">
+          <i class="fa-solid fa-user"></i>
+          Users
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" aria-current="page" href="{{ url_for('admin_roles.index') }}">
+          <i class="fa-solid fa-user-group"></i>
+          Roles
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" aria-current="page" href="{{ url_for('admin_settings.index') }}">
+          <i class="fa-solid fa-gears"></i>
+          Settings
+        </a>
+      </li>
+      {% endif %}
+      <hr/>
+      {% if 'manager' in session['role'] %}
+      <li class="nav-item">
+        <a class="nav-link" aria-current="page" href="{{ url_for('admin_profile.index') }}">
+          <i class="fa-regular fa-address-card"></i>
+          Profile
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" aria-current="page" href="{{ url_for('admin_profile.password') }}">
+          <i class="fa-solid fa-key"></i>
+          Change password
+        </a>
+      </li>
+      <hr/>
+      {% endif %}
+      <li class="nav-item">
+        <a class="nav-link" target="_blank" href="{{ url_for('flasgger.apidocs') }}">
+          <i class="fa-solid fa-book"></i>
+          Documentação da API
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="{{ url_for('admin_logout.index') }}">
+          <i class="fa-solid fa-power-off"></i>
+          Logout
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+

@@ -1,0 +1,2 @@
+from application.app_name.handlers.errors import register_error_handler
+from application.app_name.handlers.request import register_after_request_log

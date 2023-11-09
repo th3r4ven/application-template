@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>
+        {% block title %}{% endblock %} | Torcida Furiosa
+    </title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/css/jquery.dataTables.min.css"
+      integrity="sha512-1k7mWiTNoyx2XtmI96o+hdjP8nn0f3Z2N4oF/9ZZRgijyV4omsKOXEnqL1gKQNPy2MTSP9rIEWGcH/CInulptA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link type="text/css" href="{{ url_for('static', filename="css/style.css") }}" rel="stylesheet">
+
+    <!-- Specific Page CSS goes HERE -->
+    {% block stylesheets %}{% endblock stylesheets %}
+
+</head>
+<body class="app">
+
+    <div class="container" style="padding: 7em 0;">
+
+		<div class="col-md-12 d-flex justify-content-center align-middle">
+			<div class="card col-md-6">
+				<div class="row g-0">
+					<div class="col-md-7" style="padding: 3%; inline-size: fit-content;">
+						<h1 class="card-title" style="font-size: 120px;color: red">{{ code }}</h1>
+					</div>
+					<div class="col-md-7" style="padding: 3%">
+						<div class="card-body">
+
+							<h3 class="card-subtitle mb-2 text-muted">{{ title }}</h3>
+							<p class="card-text">{{ message }}</p>
+							<p class="card-text"><a href="/" type="primary" class="btn btn-primary">Voltar ao inicio</a></p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+    {% include 'layouts/includes/scripts.html' %}
+
+    <!-- Specific Page JS goes HERE -->
+    {% block javascripts %}{% endblock javascripts %}
+
+</body>
+</html>
